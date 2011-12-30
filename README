@@ -1,0 +1,32 @@
+Common UNIX Programming Library
+===============================
+
+Project homepage: http://www.enderunix.org/cupl
+
+FEATURES
+
+* Flexible config parser.
+* Data structure management functions:
+  - hash
+* String processing:
+  - Regular expression based pattern matching.
+
+INSTALL
+
+# tar -zcvf cupl-0.8.tar.gz
+# cd cupl-0.8
+# make all
+
+This will install a static library to under /usr/local/lib
+as libcupl.a and a header file cupl.h to under /usr/local/include.
+
+HOW TO USE
+
+Look at the samples directory to see code samples. 
+
+To use libcupl, you must give -lcupl flag to your compiler
+and must include cupl.h.
+
+$ cc -o sample sample.c -lcupl
+$ ./sample
+

@@ -1,0 +1,106 @@
+Libcupl Programming API
+=======================
+
+The CUPL C API, is the interface to libcupl, a set of structures and functions
+to perform some specific jobs.
+
+The library licensed under GNU Lesser General Public License. Complete source
+code of libcupl as well as the samples is available.
+
+The library is based on the modules. Each module performs well defined specific
+jobs and has its own functions and data structures.
+
+Names of the functions start a cupl_ prefix. 
+
+Library:
+	libcupl.a
+
+Headers:
+	cupl.h
+
+Modules:
+	cfg (config parser)
+	ds (Library for data structures)
+	string (String processing library)
+
+Return Values:
+
+All of the functions returns:
+	a positive number if it succeeded.
+	a negative number if an error occurred.
+	zero if it did nothing.
+
+Main Module
+===========
+
+Comments:
+	. Provides library related functions.
+
+Interface:
+	/* To print the library information */
+	void
+	print_cupl_info ();
+
+
+cfg (config parser)
+===================
+
+Features:
+	. Configuration file parser for common usages.
+
+Comments:
+	. Doesn't support quotation marks.
+	. Supports following forms:
+	  Variable=Value	; Equal separated
+	  Variable Value	; Space separated
+	  Variable	Value	; Tab separated
+	. Comment lines start with a leading # or ;
+
+Interface:
+	/* To alloc cfg_data object and open config file. */
+	cfg_data *
+	cupl_init_cfg (char *path);
+
+	/* To get a variable from cfg_data object */
+	char *
+	cupl_get_var (char *var, cfg_data *cfg);
+
+	/* To print all the parsed items */
+	void
+	cupl_print_items (cfg_data *cfg);
+
+	/* To free cfg_data object and close config file. */
+	int
+	cupl_release_cfg (cfg_data *cfg);
+
+
+ds (Data Structures)
+====================
+
+Features:
+	. Hash function
+
+Comments:
+	. The hash function is borrowed from DJB.
+
+Interface:
+	/* To get hash value */
+	unsigned int
+	cupl_hash_get(char *buf, unsigned int len, int tbl_size);
+
+String Processing
+=================
+
+Features:
+	. Interface to standart regular expression library.
+
+Comments:
+	. Not coded from zero. Uses regex library.
+
+Interface:
+	/* To match pattern */
+	int
+	cupl_match_regex(char *buffer, char *pattern);
+
+
+
